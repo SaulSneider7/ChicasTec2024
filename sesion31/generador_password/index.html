@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Generador de Contraseñas</h2>
+        <label for="length">Longitud:</label>
+        <input type="number" id="length" value="12" min="4" max="32">
+        <button onclick="generatePassword()">Generar Contraseña</button>
+        <div class="password-output" id="passwordOutput"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

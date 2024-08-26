@@ -1,0 +1,33 @@
+/*todos los valores de colores, etc. pueden ser modificables a preferencia de la estudiante*/
+body {
+    padding: 2%;
+    color: #444;
+    max-width: 980px;
+    margin: 0 auto;
+    background-color: #ED917D;
+  }
+  
+  div {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .field, .textarea {
+    margin: 0 .5em 1em 0;
+    padding: .5em 1em;
+    border: 1px solid #CCC;
+  }
+  .field {
+    flex: 1 0 40%; 
+    width: 45%;
+    float: left;
+  }
+  .textarea {
+    flex: 1 0 90%;
+    width: 90%;
+  }
+  .button {
+    padding: 5px;
+    border: 1px solid #CCC;
+    background-color: #E48236;
+    color: #FFF;
+  }

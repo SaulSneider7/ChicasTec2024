@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Estilos para el menú de navegación */
+header {
+    width: 100%;
+    background-color: #333;
+    padding: 10px 0;
+    position: fixed; /* Fija el menú en la parte superior */
+    top: 0;
+    z-index: 1000;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin-left: 20px;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+/* Ajuste para el contenido debajo del menú */
+section {
+    padding: 100px 20px; /* Añade espacio para que el contenido no quede oculto bajo el menú fijo */
+}
+
+.galeria {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las imágenes se envuelvan */
+    flex-direction: row; /* Coloca las imágenes en filas horizontales */
+    align-items: center; /* Centra las imágenes verticalmente */
+    justify-content: center; /* Centra las imágenes horizontalmente */
+    gap: 10px;
+    max-width: 90%;
+    background-color: #fff;
+    padding: 20px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.imagen {
+    background-color: #ddd;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 600px) {
+    .galeria {
+        flex-direction: column; /* Cambia a columnas en pantallas pequeñas */
+    }
+
+    .imagen {
+        width: 100%;
+        height: auto;
+    }
+
+    .menu {
+        justify-content: center;
+    }
+}

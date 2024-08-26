@@ -1,0 +1,80 @@
+body{
+    animation: miFondo 6s ease-in-out infinite;
+    color: white;
+}
+.miClase{
+    color: green;
+    font-size: 50px;
+}
+.miYoutube{
+    color: red;
+    font-size: 50px;
+}
+.miTwich{
+    color: blueviolet;
+    font-size: 50px;
+}
+.miInstagram{
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    font-size: 50px;
+    padding: 3px 5px;
+    border-radius: 10px;
+    color: white;
+}
+
+.btn{
+    background-color: green;
+    font-size: 20px;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: white;
+    color: black;
+    border: 2px dashed red;
+    transition: all 6s ease-in-out;
+}
+
+
+
+
+
+
+
+
+img{
+    border-radius: 50%;
+    animation: miAnimacion 5s ease-in-out infinite;
+}
+
+@keyframes miFondo {
+    0%{
+        background-color: #181bbc;
+    }
+    20%{
+        background-color: #6e6fe3;
+    }
+    50%{
+        background-color: red;
+    }
+    75%{
+        background-color: #cc2366;
+    }
+    100%{
+        background-color: #181bbc;
+    }
+}
+
+@keyframes miAnimacion {
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
