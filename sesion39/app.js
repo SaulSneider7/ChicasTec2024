@@ -20,3 +20,14 @@ function eliminar() {
     //muestras por consola
 }
 
+let nombres = ["Mayori", "Lorena", "Aimy", "Karina"];
+console.log(nombres);
+
+nombres.unshift("Adriana");
+console.log(nombres);
+
+nombres.shift()
+console.log(nombres);
+
+
+
