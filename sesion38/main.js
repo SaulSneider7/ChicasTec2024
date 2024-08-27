@@ -15,6 +15,25 @@ for(let valor of frutas){
     console.log(valor);
 }
 
+let MiArreglo = [];
+MiArreglo[0] = 10;
+MiArreglo[1] = "Juanita";
+MiArreglo[2] = "Con Fe";
+MiArreglo[3] = 10.5;
+console.log(MiArreglo);
+
+console.log(".:: arreglos bidimensionales ::.");
+
+let preguntas = [
+    ["¿Cual es la capital de Peru?", "Lima"],
+    ["¿Cuando es Navidad?", "25 de Diciembre"],
+    ["¿Cual es el gentilicio de Milan", "Milanesa"]
+]
+console.log(preguntas[0][0]);
+console.log(preguntas[0][1]);
+
+
+
 
 
 
