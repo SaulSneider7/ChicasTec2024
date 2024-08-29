@@ -29,10 +29,11 @@ class celular {
         this.camara = camara;
         this.almacenamiento = almacenamiento;
     }
+    llamada(){
+        let mensaje = "Estas realizando un llamada desde tu " + this.marca;
+        return mensaje;
+    }
 }
 
 let celular1 = new celular ("Iphone","13 Pro Max", "S/3500", "15Mp","128Gb");
-console.log(celular1);
-
-
-
+console.log(celular1.llamada());
