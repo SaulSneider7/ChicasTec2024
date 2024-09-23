@@ -1,63 +1,6 @@
 {
-    "comidas": [
-        {
-            "nombre": "Tacos",
-            "tipo": "Plato Principal",
-            "pais_origen": "México",
-            "ingredientes": [
-                "Tortilla",
-                "Carne",
-                "Cebolla",
-                "Cilantro",
-                "Salsa"
-            ]
-        },
-        {
-            "nombre": "Sushi",
-            "tipo": "Plato Principal",
-            "pais_origen": "Japón",
-            "ingredientes": [
-                "Arroz",
-                "Pescado",
-                "Alga Nori",
-                "Wasabi",
-                "Jengibre"
-            ]
-        },
-        {
-            "nombre": "Pizza",
-            "tipo": "Plato Principal",
-            "pais_origen": "Italia",
-            "ingredientes": [
-                "Masa",
-                "Salsa de Tomate",
-                "Queso",
-                "Pepperoni"
-            ]
-        },
-        {
-            "nombre": "Paella",
-            "tipo": "Plato Principal",
-            "pais_origen": "España",
-            "ingredientes": [
-                "Arroz",
-                "Azafrán",
-                "Mariscos",
-                "Pollo",
-                "Vegetales"
-            ]
-        },
-        {
-            "nombre": "Empanadas",
-            "tipo": "Aperitivo",
-            "pais_origen": "Argentina",
-            "ingredientes": [
-                "Masa",
-                "Carne",
-                "Cebolla",
-                "Huevo",
-                "Aceitunas"
-            ]
-        }
-    ]
+    "nombre": "Carlos Martínez",
+    "edad": 35,
+    "sueldo": 45000,
+    "hijos": 3
 }

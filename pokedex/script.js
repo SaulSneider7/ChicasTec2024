@@ -8,12 +8,15 @@ function consumiendoApi() {
             console.log(datos);
             let nombre = datos.name;
             let id = datos.id;
-
             //Crear el html
             let html = `
             <div>
-                <p>Nombre</p>
-                <p>ID</p>
+                <img src="${datos.sprites.front_default}"></img>
+                <p>Nombre: ${nombre}</p>
+                <p>ID: ${id}</p>
+                <p></p>
+                <p></p>
+                <p></p>
             </div>
             `;
             //Insertar el HTML al contenedor
