@@ -48,4 +48,13 @@ formulario_crear.addEventListener("submit", function (e) {
         });
 
     }
+
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            alert('Cuenta Creada');
+        })
+        .catch((error) => {
+            alert('error');
+            console.log(error.message);
+        })
 })
