@@ -4,7 +4,6 @@ import { auth } from './firebase.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
 let formulario_crear = document.getElementById("formulario_crear");
-let formulario_login = document.getElementById("formulario_login");
 
 formulario_crear.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -40,29 +39,20 @@ formulario_crear.addEventListener("submit", function (e) {
             icon: "error"
         });
     } else {
-        Swal.fire({
-            title: "Bien",
-            text: "Creado correctamente",
-            icon: "success"
-        }).then((result) => {
-            window.location.href = "login.html"
-        });
-
+        //===========CREAR CORREO Y PASSWORD=============
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                Swal.fire({
+                    title: "Bien",
+                    text: "Creado correctamente",
+                    icon: "success"
+                }).then((result) => {
+                    window.location.href = "login.html"
+                });
+            })
+            .catch((error) => {
+                alert('error');
+                console.log(error.message);
+            })
     }
-
-    //===========CREAR CORREO Y PASSWORD=============
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            alert('Cuenta Creada');
-            window.location.href = "registrate.html";
-        })
-        .catch((error) => {
-            alert('error');
-            console.log(error.message);
-        })
-
-    //========== INICIAR SESION CON CORREO Y PASSWORD =======
-
-
-
 })
