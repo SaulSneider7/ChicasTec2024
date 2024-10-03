@@ -1,7 +1,8 @@
 
-CREAR UNA PAGINA RESPONSIVE 
-TEMA: LIBRE 
-REQUISITOS: 
-    - DEBE TENER UNA GALERIA DE IMAGENES
-    - RESPONSIVE
-    - ESTRUCTURA CORRECTA (HEADER, MAIN, FOOTER)    
+
+CREAR UNA LOGIN USANDO SOLO BOOTSTRAP (css para pequeños detalles)
+  
+  - El formulario debe estar en un FORM
+  - Usar el evento submit para el formulario
+  - Usar un onclick para google
+  - Las alertas puedes ser en Sweet Alert o toastr
