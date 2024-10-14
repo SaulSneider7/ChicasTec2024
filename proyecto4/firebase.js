@@ -2,7 +2,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+// TODO: Add SDKs for Firebase products that you want to use
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
+//==============================================
+//COLOCAR TU PROPIA CONFIGURACION DE FIREBASE
+//==============================================
 const firebaseConfig = {
     apiKey: "AIzaSyBFXRAaZEYD6WGvoF6QRCFt82gD5BBlyxQ",
     authDomain: "developer-62567.firebaseapp.com",
@@ -12,6 +17,7 @@ const firebaseConfig = {
     appId: "1:92506163991:web:ebf8f910cfd3257a288552",
     measurementId: "G-34J7CJ0G8N"
 };
+//=================================================
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
