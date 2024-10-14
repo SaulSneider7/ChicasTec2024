@@ -36,6 +36,7 @@ google.addEventListener("click", function () {
     signInWithPopup(auth, provier)
         .then((result) => {
             alert("inicio con google")
+            window.location.href="index.html"
         })
         .catch((error) => {
             alert("Error")
