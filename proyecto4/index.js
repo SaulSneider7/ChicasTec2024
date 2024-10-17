@@ -44,3 +44,28 @@ botonPublicar.addEventListener("click", async () => {
         console.log("El campo de publicación está vacío."); // Mensaje si el campo está vacío
     }
 });
+
+// Cargar todas las publicaciones
+async function cargarPublicaciones() {
+    publicacionesDiv.innerHTML = ""; // Limpiar publicaciones previas
+    const consulta = await getDocs(collection(db, "publicaciones")); // Obtener todas las publicaciones
+    
+    consulta.forEach((doc) => {
+        const publicacion = doc.data(); // Datos de la publicación
+        const publicacionDiv = document.createElement("div"); // Crear un nuevo div para la publicación
+        publicacionDiv.classList.add("publicacion"); // Agregar clase a la publicación
+        // Contenido de la publicación
+        let contenido = `
+            <p><strong>${publicacion.userName}:</strong> ${publicacion.texto}</p>
+        `;
+        // Mostrar botones solo si es el autor de la publicación
+        if (publicacion.userId === idUsuario) {
+            contenido += `
+                <button onclick="abrirModal('${doc.id}', '${publicacion.texto}')">Editar</button>
+                <button onclick="eliminarPublicacion('${doc.id}')">Eliminar</button>
+            `;
+        }
+        publicacionDiv.innerHTML = contenido; // Asignar contenido al div
+        publicacionesDiv.appendChild(publicacionDiv); // Agregar la publicación al contenedor
+    });
+}
