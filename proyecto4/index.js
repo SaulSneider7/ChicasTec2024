@@ -10,14 +10,10 @@ let botonPublicar = document.getElementById("publicar"); // Botón para publicar
 let nuevaPublicacion = document.getElementById("nueva_publicacion"); // Área de texto para nueva publicación
 let idUsuario = null; 
 
-
-
 // Variables para el modal de edición
 let modalEditar = new bootstrap.Modal(document.getElementById('editarModal')); // Modal de edición
 let nuevoTexto = document.getElementById("nuevoTexto"); // Área de texto para editar la publicación
 let idActualEdicion = null; // Almacenar el ID de la publicación que se está editando
-
-
 
 
 // Escuchar los cambios de autenticación
@@ -82,7 +78,33 @@ cargarPublicaciones();
 
 // Función para abrir el modal de edición
 window.abrirModal = function (id, texto) {
+    console.log("modal");
     idActualEdicion = id; // Almacenar el ID de la publicación que se va a editar
     nuevoTexto.value = texto; // Colocar el texto actual en el área de texto del modal
     modalEditar.show(); // Mostrar el modal
 };
+
+// Guardar cambios en la publicación editada
+document.getElementById("guardarCambios").addEventListener("click", async () => {
+    if (nuevoTexto.value.trim() !== "") { // Verificar que el campo no esté vacío
+        try {
+            await updateDoc(doc(db, "publicaciones", idActualEdicion), {
+                texto: nuevoTexto.value // Actualizar el texto de la publicación
+            });
+            modalEditar.hide(); // Ocultar el modal
+            cargarPublicaciones(); // Recargar publicaciones
+        } catch (error) {
+            console.log("Error al editar publicación: ", error); // Manejar errores al editar
+        }
+    }
+});
+
+// Función para eliminar publicación
+window.eliminarPublicacion = async function (id) {
+    try {
+        await deleteDoc(doc(db, "publicaciones", id)); // Eliminar la publicación
+        cargarPublicaciones(); // Recargar publicaciones
+    } catch (error) {
+        console.log("Error al eliminar publicación: ", error); // Manejar errores al eliminar
+    }
+};  
