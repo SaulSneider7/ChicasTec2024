@@ -11,6 +11,15 @@ let nuevaPublicacion = document.getElementById("nueva_publicacion"); // Área de
 let idUsuario = null; 
 
 
+
+// Variables para el modal de edición
+let modalEditar = new bootstrap.Modal(document.getElementById('editarModal')); // Modal de edición
+let nuevoTexto = document.getElementById("nuevoTexto"); // Área de texto para editar la publicación
+let idActualEdicion = null; // Almacenar el ID de la publicación que se está editando
+
+
+
+
 // Escuchar los cambios de autenticación
 onAuthStateChanged(auth, (usuario) => {
     if (usuario) {
@@ -69,3 +78,11 @@ async function cargarPublicaciones() {
         publicacionesDiv.appendChild(publicacionDiv); // Agregar la publicación al contenedor
     });
 }
+cargarPublicaciones();
+
+// Función para abrir el modal de edición
+window.abrirModal = function (id, texto) {
+    idActualEdicion = id; // Almacenar el ID de la publicación que se va a editar
+    nuevoTexto.value = texto; // Colocar el texto actual en el área de texto del modal
+    modalEditar.show(); // Mostrar el modal
+};
