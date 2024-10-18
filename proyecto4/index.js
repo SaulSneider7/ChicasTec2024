@@ -40,6 +40,7 @@ botonPublicar.addEventListener("click", async () => {
                 texto: nuevaPublicacion.value, // Texto de la publicación
                 userId: idUsuario, // ID del usuario que publica
                 userName: auth.currentUser.displayName, // Nombre del usuario que publica
+                photoURL: auth.currentUser.photoURL, // Foto de perfil del usuario que publica
                 timestamp: new Date() // Fecha y hora de la publicación
             });
             nuevaPublicacion.value = "";  // Limpiar el área de texto
