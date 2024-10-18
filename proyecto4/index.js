@@ -1,8 +1,9 @@
 // Importar Firebase y las funciones necesarias
 import './firebase.js';
-import { auth, db } from './firebase.js';
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+import { auth, db, storage } from './firebase.js';
+import { onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 import { collection, addDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-storage.js";
 
 let nombreUsuario = document.getElementById("displayName");
 let publicacionesDiv = document.getElementById("publicaciones"); // Contenedor de publicaciones
@@ -56,12 +57,19 @@ async function cargarPublicaciones() {
     const consulta = await getDocs(collection(db, "publicaciones")); // Obtener todas las publicaciones
     
     consulta.forEach((doc) => {
-        const publicacion = doc.data(); // Datos de la publicación
+        const publicacion = doc.data(); // Datos de la publicación        
         const publicacionDiv = document.createElement("div"); // Crear un nuevo div para la publicación
         publicacionDiv.classList.add("publicacion"); // Agregar clase a la publicación
+
+        // Convertir Timestamp a una fecha legible
+        const fechaPublicacion = publicacion.timestamp.toDate();
+        const horaPublicacion = fechaPublicacion.toLocaleTimeString();
+        const fechaFormateada = fechaPublicacion.toLocaleDateString();
+
         // Contenido de la publicación
         let contenido = `
             <p><strong>${publicacion.userName}:</strong> ${publicacion.texto}</p>
+            <p>${fechaFormateada} ${horaPublicacion}</p>
         `;
         // Mostrar botones solo si es el autor de la publicación
         if (publicacion.userId === idUsuario) {
