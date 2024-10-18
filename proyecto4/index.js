@@ -16,6 +16,10 @@ let modalEditar = new bootstrap.Modal(document.getElementById('editarModal')); /
 let nuevoTexto = document.getElementById("nuevoTexto"); // Área de texto para editar la publicación
 let idActualEdicion = null; // Almacenar el ID de la publicación que se está editando
 
+// Variables de modal para editar perfil
+let nuevoNombre = document.getElementById("nuevoNombre");
+let nuevaFoto = document.getElementById("nuevaFoto");
+let guardarPerfilBtn = document.getElementById("guardarPerfil");
 
 // Escuchar los cambios de autenticación
 onAuthStateChanged(auth, (usuario) => {
@@ -117,3 +121,37 @@ window.eliminarPublicacion = async function (id) {
         console.log("Error al eliminar publicación: ", error); // Manejar errores al eliminar
     }
 };  
+
+// Actualizar perfil (nombre y foto)
+guardarPerfilBtn.addEventListener("click", async () => {
+    let user = auth.currentUser; // Usuario autenticado
+    let updates = {};
+    // Si el nombre ha sido actualizado
+    if (nuevoNombre.value.trim() !== "") {
+        updates.displayName = nuevoNombre.value;
+    }
+    // Si se seleccionó una nueva foto
+    if (nuevaFoto.files.length > 0) {
+        const archivoFoto = nuevaFoto.files[0];
+        const fotoRef = ref(storage, 'foto_perfiles/' + user.uid); // Referencia al storage en Firebase
+        // Subir la nueva foto de perfil a Firebase Storage
+        await uploadBytes(fotoRef, archivoFoto);
+        const urlFoto = await getDownloadURL(fotoRef); // Obtener la URL de la foto subida
+        updates.photoURL = urlFoto;
+    }
+    // Aplicar las actualizaciones al perfil del usuario
+    await updateProfile(user, updates);
+    // Actualizar la interfaz con los nuevos datos
+    if (updates.displayName) {
+        displayName.textContent = updates.displayName;
+    }
+    if (updates.photoURL) {
+        document.getElementById("fotoPerfil").src = updates.photoURL;
+    }
+    // Limpiar los campos del formulario
+    nuevoNombre.value = "";
+    nuevaFoto.value = "";
+    // Cerrar el modal
+    let actualizarModal = bootstrap.Modal.getInstance(document.getElementById('actualizarModal'));
+    actualizarModal.hide();
+});
