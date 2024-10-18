@@ -71,8 +71,17 @@ async function cargarPublicaciones() {
         const horaPublicacion = fechaPublicacion.toLocaleTimeString();
         const fechaFormateada = fechaPublicacion.toLocaleDateString();
 
+        // Asignar la foto de perfil con if...else
+        let fotoPerfil;
+        if (publicacion.photoURL) {
+            fotoPerfil = publicacion.photoURL;
+        } else {
+            fotoPerfil = "user.jpg";
+        }
+
         // Contenido de la publicación
         let contenido = `
+            <img src=${fotoPerfil} width="40" heigth="40">
             <p><strong>${publicacion.userName}:</strong> ${publicacion.texto}</p>
             <p>${fechaFormateada} ${horaPublicacion}</p>
         `;
