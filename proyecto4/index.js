@@ -9,12 +9,13 @@ let nombreUsuario = document.getElementById("displayName");
 let publicacionesDiv = document.getElementById("publicaciones"); // Contenedor de publicaciones
 let botonPublicar = document.getElementById("publicar"); // Botón para publicar
 let nuevaPublicacion = document.getElementById("nueva_publicacion"); // Área de texto para nueva publicación
-let idUsuario = null; 
+let fotoPublicacion = document.getElementById("foto_publicacion"); // Input de archivo para subir imagen
+let idUsuario = null;
 
 // Variables para el modal de edición
 let modalEditar = new bootstrap.Modal(document.getElementById('editarModal')); // Modal de edición
 let nuevoTexto = document.getElementById("nuevoTexto"); // Área de texto para editar la publicación
-let idActualEdicion = null; // Almacenar el ID de la publicación que se está editando
+let idActualEdicion = null; // Almacenar el ID de la publicación que se está editando   
 
 // Variables de modal para editar perfil
 let nuevoNombre = document.getElementById("nuevoNombre");
@@ -36,18 +37,33 @@ onAuthStateChanged(auth, (usuario) => {
     }
 });
 
-// Publicar nueva publicación
+// Publicar nueva publicación con foto
 botonPublicar.addEventListener("click", async () => {
-    if (nuevaPublicacion.value.trim() !== "") { // Verificar que el campo no esté vacío
+    if (nuevaPublicacion.value.trim() !== "" || fotoPublicacion.files.length > 0) { // Verificar que al menos uno no esté vacío
         try {
+            let urlFoto = null; // Inicialmente sin foto
+            if (fotoPublicacion.files.length > 0) {
+                const archivoFoto = fotoPublicacion.files[0];
+                const fotoRef = ref(storage, 'fotos_publicaciones/' + archivoFoto.name); // Crear referencia en Firebase Storage
+                // Subir la foto de la publicación a Firebase Storage
+                await uploadBytes(fotoRef, archivoFoto);
+                urlFoto = await getDownloadURL(fotoRef); // Obtener la URL de la foto subida
+            }
+
+            // Guardar la publicación con o sin imagen en Firestore
             await addDoc(collection(db, "publicaciones"), {
                 texto: nuevaPublicacion.value, // Texto de la publicación
                 userId: idUsuario, // ID del usuario que publica
                 userName: auth.currentUser.displayName, // Nombre del usuario que publica
                 photoURL: auth.currentUser.photoURL, // Foto de perfil del usuario que publica
+                imagenPublicacion: urlFoto, // URL de la imagen de la publicación (si existe)
                 timestamp: new Date() // Fecha y hora de la publicación
             });
             nuevaPublicacion.value = "";  // Limpiar el área de texto
+            fotoPublicacion.value = "";  // Limpiar el input de imagen
+            
+            // llamar a la funcion
+            cargarPublicaciones();
         } catch (error) {
             console.log("Error al publicar: ", error); // Manejar errores al publicar
         }
@@ -56,7 +72,7 @@ botonPublicar.addEventListener("click", async () => {
     }
 });
 
-// Cargar todas las publicaciones
+// Cargar todas las publicaciones, incluyendo imágenes
 async function cargarPublicaciones() {
     publicacionesDiv.innerHTML = ""; // Limpiar publicaciones previas
     const consulta = await getDocs(collection(db, "publicaciones")); // Obtener todas las publicaciones
@@ -72,19 +88,19 @@ async function cargarPublicaciones() {
         const fechaFormateada = fechaPublicacion.toLocaleDateString();
 
         // Asignar la foto de perfil con if...else
-        let fotoPerfil;
-        if (publicacion.photoURL) {
-            fotoPerfil = publicacion.photoURL;
-        } else {
-            fotoPerfil = "user.jpg";
-        }
+        let fotoPerfil = publicacion.photoURL || "user.jpg";
 
-        // Contenido de la publicación
+        // Contenido de la publicación, incluyendo imagen si existe
         let contenido = `
             <img src=${fotoPerfil} width="40" heigth="40">
             <p><strong>${publicacion.userName}:</strong> ${publicacion.texto}</p>
             <p>${fechaFormateada} ${horaPublicacion}</p>
         `;
+        // Agregar imagen de la publicación si existe
+        if (publicacion.imagenPublicacion) {
+            contenido += `<img src="${publicacion.imagenPublicacion}" width="200" height="200">`;
+        }
+        
         // Mostrar botones solo si es el autor de la publicación
         if (publicacion.userId === idUsuario) {
             contenido += `

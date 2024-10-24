@@ -21,6 +21,9 @@
     <!-- Textarea para hacer publicaciones -->
     <textarea cols="50" rows="5" id="nueva_publicacion" placeholder="Escribe tu publicación..."></textarea>
     <br><br>
+    <label for="foto_publicacion">Sube una imagen (opcional):</label>
+    <input type="file" id="foto_publicacion" accept="image/*">
+    <br><br>
     <button id="publicar">Publicar</button>
 
     <div id="publicaciones"></div>
@@ -73,7 +76,7 @@
         </div>
     </div>
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

@@ -10,13 +10,13 @@ import { getStorage } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-
 //COLOCAR TU PROPIA CONFIGURACION DE FIREBASE
 //==============================================
 const firebaseConfig = {
-    apiKey: "AIzaSyBFXRAaZEYD6WGvoF6QRCFt82gD5BBlyxQ",
-    authDomain: "developer-62567.firebaseapp.com",
-    projectId: "developer-62567",
-    storageBucket: "developer-62567.appspot.com",
-    messagingSenderId: "92506163991",
-    appId: "1:92506163991:web:ebf8f910cfd3257a288552",
-    measurementId: "G-34J7CJ0G8N"
+    apiKey: "AIzaSyCBgDRKqE6I-fYaRQDVksd3xeTekb-14uE",
+    authDomain: "amaryllis-5fc08.firebaseapp.com",
+    projectId: "amaryllis-5fc08",
+    storageBucket: "amaryllis-5fc08.appspot.com",
+    messagingSenderId: "297692895014",
+    appId: "1:297692895014:web:a1f59037a1563b94a293e7",
+    measurementId: "G-NETLCETYJM"
 };
 //=================================================
 
